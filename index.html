@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample Web Page — Niranjan ku</title>
+  <meta name="description" content="A simple responsive sample HTML page with header, hero, features, and footer." />
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#06b6d4; --glass: rgba(255,255,255,0.04);
+      --radius:12px; --gap:16px; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,#071023 0%, #081226 100%);color:#e6eef6;line-height:1.45}
+    .container{max-width:1100px;margin:32px auto;padding:0 20px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:800}
+    nav{display:flex;gap:12px}
+    a{color:inherit;text-decoration:none}
+    .btn{padding:8px 12px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.04)}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;margin-top:36px}
+    .hero h1{font-size:clamp(28px,4vw,44px);margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .actions{display:flex;gap:12px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));padding:18px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+
+    /* features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+    .feature{padding:16px;border-radius:10px;background:var(--card);border:1px solid rgba(255,255,255,0.02)}
+    .muted{color:var(--muted)}
+
+    footer{margin-top:36px;padding:18px 0;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .features{grid-template-columns:repeat(1,1fr)}
+      nav{display:none}
+      .mobile-nav{display:block}
+    }
+    .mobile-nav{display:none}
+
+    /* small utilities */
+    .tiny{font-size:13px;color:var(--muted)}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    .flex{display:flex}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">NU</div>
+        <div>
+          <div>SitePrivate</div>
+          <div class="tiny">Example • Responsive • Lightweight</div>
+        </div>
+      </div>
+
+      <nav>
+        <a class="btn" href="#features">Features</a>
+        <a class="btn" href="#contact">Contact</a>
+        <a class="btn" href="#" onclick="alert('Pretend this opens your repo')">View Repo</a>
+      </nav>
+
+      <div class="mobile-nav">
+        <button class="btn" onclick="toggleMenu()">Menu</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <h1>Simple, private static site — ready to publish</h1>
+          <p class="muted">This example shows a clean static HTML layout you can use to host a site without exposing server-side code. Add your files to a repo and publish to GitHub Pages, Netlify or Vercel.</p>
+          <div class="actions">
+            <a class="btn" href="#contact">Get Started</a>
+            <a class="btn" href="#features">Learn More</a>
+          </div>
+
+          <div class="card" style="margin-top:18px">
+            <strong>Quick setup</strong>
+            <p class="tiny muted" style="margin:8px 0 0">Create a repo, push these files, then enable Pages or drag to Netlify — static HTML is all that's needed.</p>
+          </div>
+        </div>
+
+        <aside class="card">
+          <h3 style="margin-top:0">Preview</h3>
+          <p class="muted tiny">A minimal contact form & feature list are included below. This preview card shows how content looks on a darker theme.</p>
+          <div style="height:180px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border-radius:8px;margin-top:12px;padding:12px">
+            <p class="tiny muted">Replace this area with an image or screenshot of your project.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section id="features" class="features">
+        <div class="feature">
+          <h4>Private by design</h4>
+          <p class="muted tiny">Host the built site publicly while keeping source code private on a separate private repo or server.</p>
+        </div>
+        <div class="feature">
+          <h4>Lightweight</h4>
+          <p class="muted tiny">No frameworks required — single HTML file, small CSS, and optional JS for interactivity.</p>
+        </div>
+        <div class="feature">
+          <h4>Easy to deploy</h4>
+          <p class="muted tiny">Drag-and-drop to Netlify or Vercel, or enable GitHub Pages for instant publishing.</p>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:26px;display:grid;grid-template-columns:1fr 360px;gap:20px">
+        <div class="card">
+          <h3 style="margin-top:0">Contact</h3>
+          <form onsubmit="event.preventDefault(); alert('Thanks! (This form is just a demo)')">
+            <label class="tiny">Name</label>
+            <input required placeholder="Your name" />
+            <label class="tiny" style="margin-top:8px">Email</label>
+            <input type="email" required placeholder="you@example.com" />
+            <label class="tiny" style="margin-top:8px">Message</label>
+            <textarea rows="4" placeholder="Say hello..."></textarea>
+            <div style="margin-top:10px" class="flex">
+              <button class="btn" type="submit">Send</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h4 style="margin-top:0">Quick links</h4>
+          <ul class="tiny muted">
+            <li>How to publish static HTML</li>
+            <li>Make a custom domain</li>
+            <li>Hide source code (build artifacts only)</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="tiny">© 2025 Niranjan — Sample Page</div>
+      <div class="tiny">Built with plain HTML • Host anywhere</div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleMenu(){
+      alert('Mobile menu demo — add your own nav here')
+    }
+  </script>
+</body>
+</html>
